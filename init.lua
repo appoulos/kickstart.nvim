@@ -716,6 +716,23 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
+        -- apoulos
+        'bash-language-server',
+        'shellcheck',
+        'shfmt',
+        'goimports',
+        'gopls',
+        'html-lsp',
+        'jdtls',
+        'json-lsp',
+        'vim-language-server',
+        'yaml-language-server',
+        'zls',
+        -- 'asm-lsp', -- long rust compilation
+        -- 'checkmake', -- not in aarch64
+        -- 'clangd', -- not in aarch64
+        -- 'stylua', -- not in aarch64 -- Used to format Lua code
+        -- 'tailwindcss-language-server',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -889,6 +906,14 @@ require('lazy').setup({
         styles = {
           comments = { italic = false }, -- Disable italics in comments
         },
+          -- apoulos
+          on_colors = function(colors)
+          colors.comment = '#888888' -- "#565f89"
+          colors.bg = '#111111' -- "#24283b" -- '#111111'
+          -- colors.hint = colors.orange
+          -- colors.error = '#ff0000'
+          -- colors.fg_gutter = '#999999' -- line numbers messes up status line
+        end,
       }
 
       -- Load the colorscheme here.
@@ -984,7 +1009,8 @@ require('lazy').setup({
   --    This is the easiest way to modularize your config.
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  -- { import = 'custom.plugins' },
+  -- apoulos
+  { import = 'custom.plugins' },
   --
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
   -- Or use telescope!
@@ -1012,5 +1038,7 @@ require('lazy').setup({
   },
 })
 
+-- apoulos
+require 'custom'
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
