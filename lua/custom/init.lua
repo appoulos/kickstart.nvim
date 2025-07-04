@@ -369,6 +369,11 @@ function CompileRun()
   elseif ft == 'zig' then
     vim.cmd ':split term://zig run -fno-llvm -fno-lld %'
   elseif ft == 'go' then
+    local f = io.open('sqlc.yaml', 'r')
+    if f then
+      io.close(f)
+      os.execute 'sqlc generate'
+    end
     vim.cmd ':split term://go run .'
   -- vim.cmd ":split term://go run . && echo && echo 'DONE (press return)' && read a"
   -- vim.cmd ":split term://go build -o ./a.out % && ./a.out && echo && echo 'DONE (press return)' && read a"
