@@ -645,3 +645,22 @@ require('lspconfig').jdtls.setup {
     end,
   },
 }
+
+-- Optional, if these filetypes aren't defined and you want to support them.
+vim.filetype.add {
+  pattern = {
+    ['.*.xdc'] = 'xdc',
+    ['.*.upf'] = 'upf',
+  },
+}
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'tcl,sdc,xdc,upf',
+  callback = function(args)
+    vim.lsp.start {
+      name = 'tclint',
+      cmd = { 'tclsp' },
+      root_dir = vim.fs.root(args.buf, { 'tclint.toml', '.tclint', 'pyproject.toml' }),
+    }
+  end,
+})
