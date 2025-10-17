@@ -299,11 +299,11 @@ vim.keymap.set('n', '<M-a>', '<leader>a', { remap = true, desc = 'Compile/Build/
 vim.keymap.set('n', '<M-n>', ':bnext<CR>', { desc = 'Next Buffer' })
 vim.keymap.set('n', '<M-p>', ':bprev<CR>', { desc = 'Previous Buffer' })
 vim.keymap.set('n', '<M-q>', ':q<CR>', { desc = 'Quit' })
-vim.keymap.set('n', '<M-,>', ':t.<CR>', { desc = 'Quit' })
 vim.keymap.set('n', '<M-s>', ':update<CR>', { desc = 'Update' })
 vim.keymap.set('n', '<M-g>', ':update<CR>:!gco<CR>', { desc = 'Save and git commit' })
 vim.keymap.set('n', '<M-t>', ':split term://bash<CR>', { desc = 'Terminal' })
 vim.keymap.set('n', '<M-.>', ':t.<CR>', { desc = 'Duplicate line' })
+vim.keymap.set('n', '<M-d>', ':w !diff % -<CR>', { desc = 'Show unsaved changes' })
 -- search on // for select mode
 -- vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 vim.keymap.set('v', '/', '"fy/\\V<C-R>f<CR>', { desc = 'search selected' })
