@@ -269,7 +269,7 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
 vim.g.shfmt_extra_args = '-i 2'
 
 -- plugin vim-shfmt: format on save
-vim.g.shfmt_fmt_on_save = 1
+vim.g.shfmt_fmt_on_save = 0
 
 -- open diagnostic float
 vim.keymap.set('n', '<leader>e', function()
