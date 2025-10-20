@@ -308,6 +308,7 @@ vim.keymap.set('n', '<M-d>', ':w !diff % -<CR>', { desc = 'Show unsaved changes'
 -- search on // for select mode
 -- vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 vim.keymap.set('v', '/', '"fy/\\V<C-R>f<CR>', { desc = 'search selected' })
+vim.keymap.set('n', '<leader>f', ':lua vim.lsp.buf.format()<CR>zo', { remap = false })
 
 -- nmap <leader>a :call CompileRunGcc()<cr>
 -- " nmap <leader>q :q<CR>
