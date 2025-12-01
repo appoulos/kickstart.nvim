@@ -667,3 +667,10 @@ vim.api.nvim_create_autocmd('FileType', {
     }
   end,
 })
+
+-- ap doesn't work
+-- Example (requires support in gopls and nvim)
+-- vim.api.nvim_set_hl(0, '@lsp.mod.shadowing', { bold = true, underline = true })
+
+vim.o.winborder = 'rounded'
+-- or 'single', 'double', 'solid', or 'none'
