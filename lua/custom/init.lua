@@ -330,6 +330,8 @@ function CompileRun()
     vim.cmd ':split term://rdmd %<'
   elseif ft == 'c' then
     vim.cmd ':split term://gcc -g % -o %< && ./%<'
+  elseif ft == 'zig' then
+    vim.cmd ':split term://zig run %'
   elseif ft == 'cpp' then
     vim.cmd ':split term://g++ % -o %< && ./%<'
   -- vim.cmd "!g++ % -o %<"
