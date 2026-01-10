@@ -252,10 +252,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
 -- })
 
 -- autoinsert on terminal window entering
-vim.api.nvim_create_autocmd({ 'BufWinEnter', 'WinEnter' }, {
-  pattern = 'term://*',
-  command = 'startinsert',
-})
+-- vim.api.nvim_create_autocmd({ 'BufWinEnter', 'WinEnter' }, {
+--   pattern = 'term://*',
+--   command = 'startinsert',
+-- })
 
 -- stop auto comment
 vim.api.nvim_create_autocmd({ 'FileType' }, {
