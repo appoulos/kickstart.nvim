@@ -292,6 +292,14 @@ vim.keymap.set('n', '<leader>a', function()
   CompileRun()
 end, { desc = 'Compile/Build/Run' })
 
+vim.keymap.set('i', '<M-h>', '<Left>', { remap = true, desc = 'Move cursor left in insert mode' })
+vim.keymap.set('i', '<M-l>', '<Right>', { remap = true, desc = 'Move cursor right in insert mode' })
+vim.keymap.set('i', '<M-j>', '<Down>', { remap = true, desc = 'Move cursor down in insert mode' })
+vim.keymap.set('i', '<M-k>', '<Up>', { remap = true, desc = 'Move cursor up in insert mode' })
+
+vim.keymap.set('i', '<M-S-h>', '<c-Left>', { remap = true, desc = 'Move cursor word left in insert mode' })
+vim.keymap.set('i', '<M-S-l>', '<c-Right>', { remap = true, desc = 'Move cursor word right in insert mode' })
+
 vim.keymap.set('n', '<M-a>', '<leader>a', { remap = true, desc = 'Compile/Build/Run' })
 --   function()
 --   CompileRun() -- vim.call 'CompileRunGcc'
