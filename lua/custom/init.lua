@@ -640,16 +640,17 @@ vim.api.nvim_create_autocmd('FileType', {
 
 -- Silence annoying "Publish diagnostics"
 -- from: https://github.com/orgs/nvim-java/discussions/89
-require('lspconfig').jdtls.setup {
-  handlers = {
-    ['language/status'] = function(_, result)
-      -- vim.print '***'
-    end,
-    ['$/progress'] = function(_, result, ctx)
-      -- vim.print '---'
-    end,
-  },
-}
+-- new way (not working): vim.lsp.config(jdtls.setup {
+-- require('lspconfig').jdtls.setup {
+--   handlers = {
+--     ['language/status'] = function(_, result)
+--       -- vim.print '***'
+--     end,
+--     ['$/progress'] = function(_, result, ctx)
+--       -- vim.print '---'
+--     end,
+--   },
+-- })
 
 -- Optional, if these filetypes aren't defined and you want to support them.
 vim.filetype.add {
