@@ -252,10 +252,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
 -- })
 
 -- autoinsert on terminal window entering
--- vim.api.nvim_create_autocmd({ 'BufWinEnter', 'WinEnter' }, {
---   pattern = 'term://*',
---   command = 'startinsert',
--- })
+vim.api.nvim_create_autocmd({ 'BufWinEnter', 'WinEnter' }, {
+  pattern = 'term://*',
+  command = 'startinsert',
+})
 
 -- stop auto comment
 vim.api.nvim_create_autocmd({ 'FileType' }, {
@@ -292,13 +292,28 @@ vim.keymap.set('n', '<leader>a', function()
   CompileRun()
 end, { desc = 'Compile/Build/Run' })
 
-vim.keymap.set('i', '<M-h>', '<Left>', { remap = true, desc = 'Move cursor left in insert mode' })
-vim.keymap.set('i', '<M-l>', '<Right>', { remap = true, desc = 'Move cursor right in insert mode' })
-vim.keymap.set('i', '<M-j>', '<Down>', { remap = true, desc = 'Move cursor down in insert mode' })
-vim.keymap.set('i', '<M-k>', '<Up>', { remap = true, desc = 'Move cursor up in insert mode' })
+vim.keymap.set('t', '<M-h>', '<C-\\><C-N><C-w>h', {remap = true, desc = 'Switch windows in terminal mode' })
+vim.keymap.set('t', '<M-j>', '<C-\\><C-N><C-w>j', {remap = true, desc = 'Switch windows in terminal mode' })
+vim.keymap.set('t', '<M-k>', '<C-\\><C-N><C-w>k', {remap = true, desc = 'Switch windows in terminal mode' })
+vim.keymap.set('t', '<M-l>', '<C-\\><C-N><C-w>l', {remap = true, desc = 'Switch windows in terminal mode' })
+vim.keymap.set('i', '<M-h>', '<C-\\><C-N><C-w>h', {remap = true, desc = 'Switch windows in insert mode' })
+vim.keymap.set('i', '<M-j>', '<C-\\><C-N><C-w>j', {remap = true, desc = 'Switch windows in insert mode' })
+vim.keymap.set('i', '<M-k>', '<C-\\><C-N><C-w>k', {remap = true, desc = 'Switch windows in insert mode' })
+vim.keymap.set('i', '<M-l>', '<C-\\><C-N><C-w>l', {remap = true, desc = 'Switch windows in insert mode' })
+vim.keymap.set('n', '<M-h>', '<C-w>h', {remap = true, desc = 'Switch windows in normal mode' })
+vim.keymap.set('n', '<M-j>', '<C-w>j', {remap = true, desc = 'Switch windows in normal mode' })
+vim.keymap.set('n', '<M-k>', '<C-w>k', {remap = true, desc = 'Switch windows in normal mode' })
+vim.keymap.set('n', '<M-l>', '<C-w>l', {remap = true, desc = 'Switch windows in normal mode' })
 
-vim.keymap.set('i', '<M-S-h>', '<c-Left>', { remap = true, desc = 'Move cursor word left in insert mode' })
-vim.keymap.set('i', '<M-S-l>', '<c-Right>', { remap = true, desc = 'Move cursor word right in insert mode' })
+vim.keymap.set('i', '<C-l>', '<Right>', { remap = true, desc = 'Move cursor right in insert mode' })
+vim.keymap.set('i', '<C-h>', '<Left>', { remap = true, desc = 'Move cursor left in insert mode' })
+
+-- vim.keymap.set('i', '<C-S-h>', '<c-Left>', { remap = true, desc = 'Move cursor word left in insert mode' })
+-- vim.keymap.set('i', '<C-S-l>', '<c-Right>', { remap = true, desc = 'Move cursor word right in insert mode' })
+
+-- apoulos C-k is for popup help
+-- vim.keymap.set('i', '<C-k>', '<Up>', { remap = true, desc = 'Move cursor up in insert mode' })
+-- vim.keymap.set('i', '<C-j>', '<Down>', { remap = true, desc = 'Move cursor down in insert mode' })
 
 vim.keymap.set('n', '<M-a>', '<leader>a', { remap = true, desc = 'Compile/Build/Run' })
 --   function()
@@ -338,6 +353,8 @@ function CompileRun()
     vim.cmd ':split term://rdmd %<'
   elseif ft == 'c' then
     vim.cmd ':split term://gcc -g % -o %< && ./%<'
+  elseif ft == 'lua' then
+    vim.cmd ':split term://lua %'
   elseif ft == 'zig' then
     vim.cmd ':split term://zig run %'
   elseif ft == 'cpp' then
@@ -545,13 +562,17 @@ vim.keymap.set('n', '[q', ':cprev<CR>', { desc = 'Quickfix prev' })
 -- n: Move current line / block with Alt-j/k a la vscode.
 -- ["<A-j>"] = ":m .+1<CR>==",
 -- ["<A-k>"] = ":m .-2<CR>==",
-vim.keymap.set('n', '<M-j>', ':m .+1<CR>==', { desc = 'Line move down' })
-vim.keymap.set('n', '<M-k>', ':m .-2<CR>==', { desc = 'Line move up' })
+
+vim.keymap.set('n', '<C-j>', ':m .+1<CR>==', { desc = 'Line move down' })
+vim.keymap.set('n', '<C-k>', ':m .-2<CR>==', { desc = 'Line move up' })
+
 -- x: Move current line / block with Alt-j/k ala vscode.
 -- ["<A-j>"] = ":m '>+1<CR>gv-gv",
 -- ["<A-k>"] = ":m '<-2<CR>gv-gv",
-vim.keymap.set('x', '<M-j>', ":m '>+1<CR>gv-gv", { desc = 'Block move down' })
-vim.keymap.set('x', '<M-k>', ":m '>-3<CR>gv+gv", { desc = 'Block move up' })
+
+vim.keymap.set('x', '<C-j>', ":m '>+1<CR>gv-gv", { desc = 'Block move down' })
+vim.keymap.set('x', '<C-k>', ":m '>-3<CR>gv+gv", { desc = 'Block move up' })
+
 -- v: Better indenting
 -- ["<"] = "<gv",
 -- [">"] = ">gv",
