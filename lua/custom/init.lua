@@ -403,7 +403,7 @@ function CompileRun()
       io.close(f)
       os.execute 'sqlc generate'
     end
-    vim.cmd ':split term://go run .'
+    vim.cmd ':split term://go run %'
   -- vim.cmd ":split term://go run . && echo && echo 'DONE (press return)' && read a"
   -- vim.cmd ":split term://go build -o ./a.out % && ./a.out && echo && echo 'DONE (press return)' && read a"
   -- vim.cmd ":split term://go build % && ./%< && echo && echo DONE. && read a"
