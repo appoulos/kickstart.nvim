@@ -359,7 +359,7 @@ function CompileRun()
     vim.cmd ':split term://zig run %'
   elseif ft == 'cpp' then
     vim.cmd ':split term://g++ % -o %< && ./%<'
-  -- vim.cmd "!g++ % -o %<"
+    -- vim.cmd "!g++ % -o %<"
   elseif ft == 'java' then
     -- vim.cmd ':split term://javac *.java && java -cp %:p:h %:t:r'
     os.execute '[[ ! -d ".class" ]] && mkdir .class'
@@ -404,15 +404,15 @@ function CompileRun()
       os.execute 'sqlc generate'
     end
     vim.cmd ':split term://go run %'
-  -- vim.cmd ":split term://go run . && echo && echo 'DONE (press return)' && read a"
-  -- vim.cmd ":split term://go build -o ./a.out % && ./a.out && echo && echo 'DONE (press return)' && read a"
-  -- vim.cmd ":split term://go build % && ./%< && echo && echo DONE. && read a"
-  -- vim.cmd "!go build %<"
-  -- vim.cmd "!time go run %"
-  -- vim.cmd ":split term://go run %"
-  -- vim.cmd ":split term://(go run % || read a)"
-  -- best behaved on ctrl-d or fatal"
-  -- vim.cmd ":split term://(go run %)"
+    -- vim.cmd ":split term://go run . && echo && echo 'DONE (press return)' && read a"
+    -- vim.cmd ":split term://go build -o ./a.out % && ./a.out && echo && echo 'DONE (press return)' && read a"
+    -- vim.cmd ":split term://go build % && ./%< && echo && echo DONE. && read a"
+    -- vim.cmd "!go build %<"
+    -- vim.cmd "!time go run %"
+    -- vim.cmd ":split term://go run %"
+    -- vim.cmd ":split term://(go run % || read a)"
+    -- best behaved on ctrl-d or fatal"
+    -- vim.cmd ":split term://(go run %)"
   elseif ft == 'mkd' then
     vim.cmd '!~/.vim/markdown.pl % > %.html &'
     vim.cmd '!firefox %.html &'
@@ -477,15 +477,15 @@ end
 vim.keymap.set('n', '<leader>z', function()
   require('zen-mode').toggle {
     window = {
-      width = 1, -- 0.85, -- width will be 85% of the editor width
+      width = 1,                -- 0.85, -- width will be 85% of the editor width
       options = {
-        signcolumn = 'no', -- disable signcolumn
-        number = false, -- disable number column
+        signcolumn = 'no',      -- disable signcolumn
+        number = false,         -- disable number column
         relativenumber = false, -- disable relative numbers
-        cursorline = false, -- disable cursorline
-        cursorcolumn = false, -- disable cursor column
-        foldcolumn = '0', -- disable fold column
-        list = false, -- disable whitespace characters
+        cursorline = false,     -- disable cursorline
+        cursorcolumn = false,   -- disable cursor column
+        foldcolumn = '0',       -- disable fold column
+        list = false,           -- disable whitespace characters
       },
     },
   }
@@ -722,14 +722,20 @@ vim.o.winborder = 'rounded'
 -- vim.keymap.set('!', '<C-u>', readline.backward_kill_line)
 
 -- maximal
+-- my change is to skip commas
+-- .local/share/kickstart.nvim/lazy/readline.nvim/lua/readline.lua
+-- add comma check at line 30:
+-- return c == ' ' or
+--        c == '	' or -- tab char
+--        c == ','
 local readline = require 'readline'
 vim.keymap.set('!', '<C-k>', readline.kill_line)
 vim.keymap.set('!', '<C-u>', readline.backward_kill_line)
 vim.keymap.set('!', '<M-d>', readline.kill_word)
 vim.keymap.set('!', '<M-BS>', readline.backward_kill_word)
 vim.keymap.set('!', '<C-w>', readline.unix_word_rubout)
-vim.keymap.set('!', '<C-d>', '<Delete>')  -- delete-char
-vim.keymap.set('!', '<C-h>', '<BS>')      -- backward-delete-char
+vim.keymap.set('!', '<C-d>', '<Delete>') -- delete-char
+vim.keymap.set('!', '<C-h>', '<BS>')     -- backward-delete-char
 vim.keymap.set('!', '<C-a>', readline.beginning_of_line)
 vim.keymap.set('!', '<C-e>', readline.end_of_line)
 vim.keymap.set('!', '<M-f>', readline.forward_word)
