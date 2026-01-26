@@ -292,18 +292,18 @@ vim.keymap.set('n', '<leader>a', function()
   CompileRun()
 end, { desc = 'Compile/Build/Run' })
 
-vim.keymap.set('t', '<M-h>', '<C-\\><C-N><C-w>h', {remap = true, desc = 'Switch windows in terminal mode' })
-vim.keymap.set('t', '<M-j>', '<C-\\><C-N><C-w>j', {remap = true, desc = 'Switch windows in terminal mode' })
-vim.keymap.set('t', '<M-k>', '<C-\\><C-N><C-w>k', {remap = true, desc = 'Switch windows in terminal mode' })
-vim.keymap.set('t', '<M-l>', '<C-\\><C-N><C-w>l', {remap = true, desc = 'Switch windows in terminal mode' })
-vim.keymap.set('i', '<M-h>', '<C-\\><C-N><C-w>h', {remap = true, desc = 'Switch windows in insert mode' })
-vim.keymap.set('i', '<M-j>', '<C-\\><C-N><C-w>j', {remap = true, desc = 'Switch windows in insert mode' })
-vim.keymap.set('i', '<M-k>', '<C-\\><C-N><C-w>k', {remap = true, desc = 'Switch windows in insert mode' })
-vim.keymap.set('i', '<M-l>', '<C-\\><C-N><C-w>l', {remap = true, desc = 'Switch windows in insert mode' })
-vim.keymap.set('n', '<M-h>', '<C-w>h', {remap = true, desc = 'Switch windows in normal mode' })
-vim.keymap.set('n', '<M-j>', '<C-w>j', {remap = true, desc = 'Switch windows in normal mode' })
-vim.keymap.set('n', '<M-k>', '<C-w>k', {remap = true, desc = 'Switch windows in normal mode' })
-vim.keymap.set('n', '<M-l>', '<C-w>l', {remap = true, desc = 'Switch windows in normal mode' })
+vim.keymap.set('t', '<M-h>', '<C-\\><C-N><C-w>h', { remap = true, desc = 'Switch windows in terminal mode' })
+vim.keymap.set('t', '<M-j>', '<C-\\><C-N><C-w>j', { remap = true, desc = 'Switch windows in terminal mode' })
+vim.keymap.set('t', '<M-k>', '<C-\\><C-N><C-w>k', { remap = true, desc = 'Switch windows in terminal mode' })
+vim.keymap.set('t', '<M-l>', '<C-\\><C-N><C-w>l', { remap = true, desc = 'Switch windows in terminal mode' })
+vim.keymap.set('i', '<M-h>', '<C-\\><C-N><C-w>h', { remap = true, desc = 'Switch windows in insert mode' })
+vim.keymap.set('i', '<M-j>', '<C-\\><C-N><C-w>j', { remap = true, desc = 'Switch windows in insert mode' })
+vim.keymap.set('i', '<M-k>', '<C-\\><C-N><C-w>k', { remap = true, desc = 'Switch windows in insert mode' })
+vim.keymap.set('i', '<M-l>', '<C-\\><C-N><C-w>l', { remap = true, desc = 'Switch windows in insert mode' })
+vim.keymap.set('n', '<M-h>', '<C-w>h', { remap = true, desc = 'Switch windows in normal mode' })
+vim.keymap.set('n', '<M-j>', '<C-w>j', { remap = true, desc = 'Switch windows in normal mode' })
+vim.keymap.set('n', '<M-k>', '<C-w>k', { remap = true, desc = 'Switch windows in normal mode' })
+vim.keymap.set('n', '<M-l>', '<C-w>l', { remap = true, desc = 'Switch windows in normal mode' })
 
 vim.keymap.set('i', '<C-l>', '<Right>', { remap = true, desc = 'Move cursor right in insert mode' })
 vim.keymap.set('i', '<C-h>', '<Left>', { remap = true, desc = 'Move cursor left in insert mode' })
@@ -359,7 +359,7 @@ function CompileRun()
     vim.cmd ':split term://zig run %'
   elseif ft == 'cpp' then
     vim.cmd ':split term://g++ % -o %< && ./%<'
-  -- vim.cmd "!g++ % -o %<"
+    -- vim.cmd "!g++ % -o %<"
   elseif ft == 'java' then
     -- vim.cmd ':split term://javac *.java && java -cp %:p:h %:t:r'
     os.execute '[[ ! -d ".class" ]] && mkdir .class'
@@ -404,15 +404,15 @@ function CompileRun()
       os.execute 'sqlc generate'
     end
     vim.cmd ':split term://go run .'
-  -- vim.cmd ":split term://go run . && echo && echo 'DONE (press return)' && read a"
-  -- vim.cmd ":split term://go build -o ./a.out % && ./a.out && echo && echo 'DONE (press return)' && read a"
-  -- vim.cmd ":split term://go build % && ./%< && echo && echo DONE. && read a"
-  -- vim.cmd "!go build %<"
-  -- vim.cmd "!time go run %"
-  -- vim.cmd ":split term://go run %"
-  -- vim.cmd ":split term://(go run % || read a)"
-  -- best behaved on ctrl-d or fatal"
-  -- vim.cmd ":split term://(go run %)"
+    -- vim.cmd ":split term://go run . && echo && echo 'DONE (press return)' && read a"
+    -- vim.cmd ":split term://go build -o ./a.out % && ./a.out && echo && echo 'DONE (press return)' && read a"
+    -- vim.cmd ":split term://go build % && ./%< && echo && echo DONE. && read a"
+    -- vim.cmd "!go build %<"
+    -- vim.cmd "!time go run %"
+    -- vim.cmd ":split term://go run %"
+    -- vim.cmd ":split term://(go run % || read a)"
+    -- best behaved on ctrl-d or fatal"
+    -- vim.cmd ":split term://(go run %)"
   elseif ft == 'mkd' then
     vim.cmd '!~/.vim/markdown.pl % > %.html &'
     vim.cmd '!firefox %.html &'
@@ -670,7 +670,7 @@ vim.api.nvim_create_autocmd('FileType', {
 -- Silence annoying "Publish diagnostics"
 -- from: https://github.com/orgs/nvim-java/discussions/89
 -- require('lspconfig').jdtls.setup {
--- new way: 
+-- new way:
 vim.lsp.config['jdtls'] = {
   handlers = {
     ['language/status'] = function(_, result)
@@ -707,3 +707,34 @@ vim.api.nvim_create_autocmd('FileType', {
 
 vim.o.winborder = 'rounded'
 -- or 'single', 'double', 'solid', or 'none'
+
+-- readline from: https://github.com/assistcontrol/readline.nvim?tab=readme-ov-file#opinionated
+-- sample
+-- local readline = require 'readline'
+-- vim.keymap.set('!', '<M-f>', readline.forward_word)
+-- vim.keymap.set('!', '<M-b>', readline.backward_word)
+-- vim.keymap.set('!', '<C-a>', readline.beginning_of_line)
+-- vim.keymap.set('!', '<C-e>', readline.end_of_line)
+-- vim.keymap.set('!', '<M-d>', readline.kill_word)
+-- vim.keymap.set('!', '<M-BS>', readline.backward_kill_word)
+-- vim.keymap.set('!', '<C-w>', readline.unix_word_rubout)
+-- vim.keymap.set('!', '<C-k>', readline.kill_line)
+-- vim.keymap.set('!', '<C-u>', readline.backward_kill_line)
+
+-- maximal
+local readline = require 'readline'
+vim.keymap.set('!', '<C-k>', readline.kill_line)
+vim.keymap.set('!', '<C-u>', readline.backward_kill_line)
+vim.keymap.set('!', '<M-d>', readline.kill_word)
+vim.keymap.set('!', '<M-BS>', readline.backward_kill_word)
+vim.keymap.set('!', '<C-w>', readline.unix_word_rubout)
+vim.keymap.set('!', '<C-d>', '<Delete>')  -- delete-char
+vim.keymap.set('!', '<C-h>', '<BS>')      -- backward-delete-char
+vim.keymap.set('!', '<C-a>', readline.beginning_of_line)
+vim.keymap.set('!', '<C-e>', readline.end_of_line)
+vim.keymap.set('!', '<M-f>', readline.forward_word)
+vim.keymap.set('!', '<M-b>', readline.backward_word)
+vim.keymap.set('!', '<C-f>', '<Right>') -- forward-char
+vim.keymap.set('!', '<C-b>', '<Left>')  -- backward-char
+vim.keymap.set('!', '<C-n>', '<Down>')  -- next-line
+vim.keymap.set('!', '<C-p>', '<Up>')    -- previous-line

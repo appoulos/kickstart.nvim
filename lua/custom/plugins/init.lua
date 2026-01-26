@@ -231,32 +231,67 @@ return {
 
   -- from: https://github.com/folke/flash.nvim
   {
-    "folke/flash.nvim",
-    event = "VeryLazy",
+    'folke/flash.nvim',
+    event = 'VeryLazy',
     ---@type Flash.Config
     opts = {},
     keys = {
-      { "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
-      { "S",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
-      { "r",     mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
-      { "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-      { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
+      {
+        's',
+        mode = { 'n', 'x', 'o' },
+        function()
+          require('flash').jump()
+        end,
+        desc = 'Flash',
+      },
+      {
+        'S',
+        mode = { 'n', 'x', 'o' },
+        function()
+          require('flash').treesitter()
+        end,
+        desc = 'Flash Treesitter',
+      },
+      {
+        'r',
+        mode = 'o',
+        function()
+          require('flash').remote()
+        end,
+        desc = 'Remote Flash',
+      },
+      {
+        'R',
+        mode = { 'o', 'x' },
+        function()
+          require('flash').treesitter_search()
+        end,
+        desc = 'Treesitter Search',
+      },
+      {
+        '<c-s>',
+        mode = { 'c' },
+        function()
+          require('flash').toggle()
+        end,
+        desc = 'Toggle Flash Search',
+      },
     },
   },
 
   -- from: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   {
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    dependencies = { "nvim-treesitter" },
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    dependencies = { 'nvim-treesitter' },
     config = function()
-      require("nvim-treesitter.configs").setup({
+      require('nvim-treesitter.configs').setup {
         textobjects = {
           move = {
             enable = true,
             set_jumps = true,             -- whether to set jumps in the jumplist
             goto_next_start = {
-              ["]f"] = "@function.outer", -- apoulos was m
-              ["]]"] = { query = "@class.outer", desc = "Next class start" },
+              [']f'] = '@function.outer', -- apoulos was m
+              [']]'] = { query = '@class.outer', desc = 'Next class start' },
               --
               -- You can use regex matching (i.e. lua pattern) and/or pass a list in a "query" key to group multiple queries.
               -- ["]o"] = "@loop.*",
@@ -268,26 +303,26 @@ return {
               -- ["]z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
             },
             goto_next_end = {
-              ["]F"] = "@function.outer",
-              ["]["] = "@class.outer",
+              [']F'] = '@function.outer',
+              [']['] = '@class.outer',
             },
             goto_previous_start = {
-              ["[f"] = "@function.outer",
-              ["[["] = "@class.outer",
+              ['[f'] = '@function.outer',
+              ['[['] = '@class.outer',
             },
             goto_previous_end = {
-              ["[F"] = "@function.outer",
-              ["[]"] = "@class.outer",
+              ['[F'] = '@function.outer',
+              ['[]'] = '@class.outer',
             },
             -- Below will go to either the start or the end, whichever is closer.
             -- Use if you want more granular movements
             -- Make it even more gradual by adding multiple queries and regex.
             goto_next = {
-              ["]c"] = "@conditional.outer",
+              [']c'] = '@conditional.outer',
             },
             goto_previous = {
-              ["[c"] = "@conditional.outer",
-            }
+              ['[c'] = '@conditional.outer',
+            },
           },
           select = {
             enable = true,
@@ -297,14 +332,14 @@ return {
 
             keymaps = {
               -- You can use the capture groups defined in textobjects.scm
-              ["af"] = "@function.outer",
-              ["if"] = "@function.inner",
-              ["ac"] = "@class.outer",
+              ['af'] = '@function.outer',
+              ['if'] = '@function.inner',
+              ['ac'] = '@class.outer',
               -- You can optionally set descriptions to the mappings (used in the desc parameter of
               -- nvim_buf_set_keymap) which plugins like which-key display
-              ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+              ['ic'] = { query = '@class.inner', desc = 'Select inner part of a class region' },
               -- You can also use captures from other query groups like `locals.scm`
-              ["as"] = { query = "@local.scope", query_group = "locals", desc = "Select language scope" },
+              ['as'] = { query = '@local.scope', query_group = 'locals', desc = 'Select language scope' },
             },
             -- You can choose the select mode (default is charwise 'v')
             --
@@ -332,10 +367,10 @@ return {
           swap = {
             enable = true,
             swap_next = {
-              ["<leader>c"] = "@parameter.inner", -- { query = "@parameter.inner", desc = "Swap parameters" } -- apoulos was a
+              ['<leader>c'] = '@parameter.inner', -- { query = "@parameter.inner", desc = "Swap parameters" } -- apoulos was a
             },
             swap_previous = {
-              ["<leader>C"] = "@parameter.inner", -- apoulos was A
+              ['<leader>C'] = '@parameter.inner', -- apoulos was A
             },
           },
           lsp_interop = {
@@ -343,13 +378,13 @@ return {
             border = 'none',
             floating_preview_opts = {},
             peek_definition_code = {
-              ["<leader>df"] = "@function.outer",
-              ["<leader>dF"] = "@class.outer",
+              ['<leader>df'] = '@function.outer',
+              ['<leader>dF'] = '@class.outer',
             },
           },
         },
-      })
-    end
+      }
+    end,
   },
 
   -- from: https://github.com/abecodes/tabout.nvim
@@ -372,23 +407,23 @@ return {
           { open = '`', close = '`' },
           { open = '(', close = ')' },
           { open = '[', close = ']' },
-          { open = '{', close = '}' }
+          { open = '{', close = '}' },
         },
         ignore_beginning = true, --[[ if the cursor is at the beginning of a filled element it will rather tab out than shift the content ]]
-        exclude = {} -- tabout will ignore these filetypes
+        exclude = {}, -- tabout will ignore these filetypes
       }
     end,
     dependencies = { -- These are optional
-      "nvim-treesitter/nvim-treesitter",
-      "L3MON4D3/LuaSnip",
-      "hrsh7th/nvim-cmp"
+      'nvim-treesitter/nvim-treesitter',
+      'L3MON4D3/LuaSnip',
+      'hrsh7th/nvim-cmp',
     },
     opt = true,              -- Set this to true if the plugin is optional
     event = 'InsertCharPre', -- Set the event to 'InsertCharPre' for better compatibility
     priority = 1000,
   },
   {
-    "L3MON4D3/LuaSnip",
+    'L3MON4D3/LuaSnip',
     keys = function()
       -- Disable default tab keybinding in LuaSnip
       return {}
@@ -401,14 +436,15 @@ return {
     keys = { '<space>m', '<space>j', '<space>b' },
     dependencies = { 'nvim-treesitter/nvim-treesitter' }, -- if you install parsers with `nvim-treesitter`
     config = function()
-      require('treesj').setup({ --[[ your config ]] })
+      require('treesj').setup { --[[ your config ]]
+      }
     end,
   },
 
   {
     'windwp/nvim-autopairs',
-    event = "InsertEnter",
-    config = true
+    event = 'InsertEnter',
+    config = true,
     -- use opts = {} for passing setup options
     -- this is equivalent to setup({}) function
   },
@@ -416,27 +452,30 @@ return {
   -- from: https://github.com/nvim-treesitter/nvim-treesitter-context
   {
     'nvim-treesitter/nvim-treesitter-context',
-    dependencies = { "nvim-treesitter" },
+    dependencies = { 'nvim-treesitter' },
     config = function()
-      require("treesitter-context").setup({
-        enable = true,          -- Enable this plugin (Can be enabled/disabled later via commands)
-        multiwindow = false,    -- Enable multiwindow support.
-        max_lines = 0,          -- How many lines the window should span. Values <= 0 mean no limit.
-        min_window_height = 0,  -- Minimum editor window height to enable context. Values <= 0 mean no limit.
+      require('treesitter-context').setup {
+        enable = true,            -- Enable this plugin (Can be enabled/disabled later via commands)
+        multiwindow = false,      -- Enable multiwindow support.
+        max_lines = 0,            -- How many lines the window should span. Values <= 0 mean no limit.
+        min_window_height = 0,    -- Minimum editor window height to enable context. Values <= 0 mean no limit.
         line_numbers = true,
         multiline_threshold = 20, -- Maximum number of lines to show for a single context
-        trim_scope = 'inner',   -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
-        mode = 'cursor',        -- Line used to calculate context. Choices: 'cursor', 'topline'
+        trim_scope = 'inner',     -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
+        mode = 'cursor',          -- Line used to calculate context. Choices: 'cursor', 'topline'
         -- Separator between context and content. Should be a single character string, like '-'.
         -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
         separator = nil,
-        zindex = 20,   -- The Z-index of the context window
+        zindex = 20,     -- The Z-index of the context window
         on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
-      })
-    end
+      }
+    end,
   },
 
   -- from: https://github.com/wellle/context.vim
   -- Heavy weight regex version for context at top of screen:
   -- { 'wellle/context.vim' }
+
+  -- readline
+  { 'assistcontrol/readline.nvim' }
 }
