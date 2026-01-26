@@ -359,7 +359,7 @@ function CompileRun()
     vim.cmd ':split term://zig run %'
   elseif ft == 'cpp' then
     vim.cmd ':split term://g++ % -o %< && ./%<'
-    -- vim.cmd "!g++ % -o %<"
+  -- vim.cmd "!g++ % -o %<"
   elseif ft == 'java' then
     -- vim.cmd ':split term://javac *.java && java -cp %:p:h %:t:r'
     os.execute '[[ ! -d ".class" ]] && mkdir .class'
@@ -403,16 +403,16 @@ function CompileRun()
       io.close(f)
       os.execute 'sqlc generate'
     end
-    vim.cmd ':split term://go run .'
-    -- vim.cmd ":split term://go run . && echo && echo 'DONE (press return)' && read a"
-    -- vim.cmd ":split term://go build -o ./a.out % && ./a.out && echo && echo 'DONE (press return)' && read a"
-    -- vim.cmd ":split term://go build % && ./%< && echo && echo DONE. && read a"
-    -- vim.cmd "!go build %<"
-    -- vim.cmd "!time go run %"
-    -- vim.cmd ":split term://go run %"
-    -- vim.cmd ":split term://(go run % || read a)"
-    -- best behaved on ctrl-d or fatal"
-    -- vim.cmd ":split term://(go run %)"
+    vim.cmd ':split term://go run %'
+  -- vim.cmd ":split term://go run . && echo && echo 'DONE (press return)' && read a"
+  -- vim.cmd ":split term://go build -o ./a.out % && ./a.out && echo && echo 'DONE (press return)' && read a"
+  -- vim.cmd ":split term://go build % && ./%< && echo && echo DONE. && read a"
+  -- vim.cmd "!go build %<"
+  -- vim.cmd "!time go run %"
+  -- vim.cmd ":split term://go run %"
+  -- vim.cmd ":split term://(go run % || read a)"
+  -- best behaved on ctrl-d or fatal"
+  -- vim.cmd ":split term://(go run %)"
   elseif ft == 'mkd' then
     vim.cmd '!~/.vim/markdown.pl % > %.html &'
     vim.cmd '!firefox %.html &'
