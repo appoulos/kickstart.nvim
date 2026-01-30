@@ -477,5 +477,13 @@ return {
   -- { 'wellle/context.vim' }
 
   -- readline
-  { 'assistcontrol/readline.nvim' }
+  { 'assistcontrol/readline.nvim' },
+
+  -- for tmux/wezterm alt-hjkl switch pane
+  {
+    'numToStr/Navigator.nvim',
+    config = function()
+      require('Navigator').setup()
+    end,
+  },
 }

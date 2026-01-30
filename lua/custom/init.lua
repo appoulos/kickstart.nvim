@@ -744,3 +744,16 @@ vim.keymap.set('!', '<C-f>', '<Right>') -- forward-char
 vim.keymap.set('!', '<C-b>', '<Left>')  -- backward-char
 vim.keymap.set('!', '<C-n>', '<Down>')  -- next-line
 vim.keymap.set('!', '<C-p>', '<Up>')    -- previous-line
+
+-- navigator (alt-hjkl to switch panes in tmux/wezterm)
+vim.keymap.set({'n', 't'}, '<A-h>', '<CMD>NavigatorLeft<CR>')
+vim.keymap.set({'n', 't'}, '<A-l>', '<CMD>NavigatorRight<CR>')
+vim.keymap.set({'n', 't'}, '<A-k>', '<CMD>NavigatorUp<CR>')
+vim.keymap.set({'n', 't'}, '<A-j>', '<CMD>NavigatorDown<CR>')
+vim.keymap.set({'n', 't'}, '<A-p>', '<CMD>NavigatorPrevious<CR>')
+
+-- Command line hiding
+vim.opt.cmdheight = 0
+vim.keymap.set("n", "<leader>sc", function()
+    vim.opt.cmdheight = 1 - vim.opt.cmdheight -- ._value
+end, { desc = "Toggle cmdheight" })
