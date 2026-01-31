@@ -331,7 +331,7 @@ vim.keymap.set('n', '<M-d>', ':w !diff % -<CR>', { desc = 'Show unsaved changes'
 -- search on // for select mode
 -- vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 vim.keymap.set('v', '/', '"fy/\\V<C-R>f<CR>', { desc = 'search selected' })
-vim.keymap.set('n', '<leader>f', ':lua vim.lsp.buf.format()<CR>zo', { remap = false })
+vim.keymap.set('n', '<leader>f', ':lua vim.lsp.buf.format()<CR>', { remap = false })
 
 -- nmap <leader>a :call CompileRunGcc()<cr>
 -- " nmap <leader>q :q<CR>
@@ -477,15 +477,15 @@ end
 vim.keymap.set('n', '<leader>z', function()
   require('zen-mode').toggle {
     window = {
-      width = 1,                -- 0.85, -- width will be 85% of the editor width
+      width = 1, -- 0.85, -- width will be 85% of the editor width
       options = {
-        signcolumn = 'no',      -- disable signcolumn
-        number = false,         -- disable number column
+        signcolumn = 'no', -- disable signcolumn
+        number = false, -- disable number column
         relativenumber = false, -- disable relative numbers
-        cursorline = false,     -- disable cursorline
-        cursorcolumn = false,   -- disable cursor column
-        foldcolumn = '0',       -- disable fold column
-        list = false,           -- disable whitespace characters
+        cursorline = false, -- disable cursorline
+        cursorcolumn = false, -- disable cursor column
+        foldcolumn = '0', -- disable fold column
+        list = false, -- disable whitespace characters
       },
     },
   }
@@ -735,25 +735,40 @@ vim.keymap.set('!', '<M-d>', readline.kill_word)
 vim.keymap.set('!', '<M-BS>', readline.backward_kill_word)
 vim.keymap.set('!', '<C-w>', readline.unix_word_rubout)
 vim.keymap.set('!', '<C-d>', '<Delete>') -- delete-char
-vim.keymap.set('!', '<C-h>', '<BS>')     -- backward-delete-char
+vim.keymap.set('!', '<C-h>', '<BS>') -- backward-delete-char
 vim.keymap.set('!', '<C-a>', readline.beginning_of_line)
 vim.keymap.set('!', '<C-e>', readline.end_of_line)
 vim.keymap.set('!', '<M-f>', readline.forward_word)
 vim.keymap.set('!', '<M-b>', readline.backward_word)
 vim.keymap.set('!', '<C-f>', '<Right>') -- forward-char
-vim.keymap.set('!', '<C-b>', '<Left>')  -- backward-char
-vim.keymap.set('!', '<C-n>', '<Down>')  -- next-line
-vim.keymap.set('!', '<C-p>', '<Up>')    -- previous-line
+vim.keymap.set('!', '<C-b>', '<Left>') -- backward-char
+vim.keymap.set('!', '<C-n>', '<Down>') -- next-line
+vim.keymap.set('!', '<C-p>', '<Up>') -- previous-line
 
 -- navigator (alt-hjkl to switch panes in tmux/wezterm)
-vim.keymap.set({'n', 't'}, '<A-h>', '<CMD>NavigatorLeft<CR>')
-vim.keymap.set({'n', 't'}, '<A-l>', '<CMD>NavigatorRight<CR>')
-vim.keymap.set({'n', 't'}, '<A-k>', '<CMD>NavigatorUp<CR>')
-vim.keymap.set({'n', 't'}, '<A-j>', '<CMD>NavigatorDown<CR>')
-vim.keymap.set({'n', 't'}, '<A-p>', '<CMD>NavigatorPrevious<CR>')
+vim.keymap.set({ 'n', 't' }, '<A-h>', '<CMD>NavigatorLeft<CR>')
+vim.keymap.set({ 'n', 't' }, '<A-l>', '<CMD>NavigatorRight<CR>')
+vim.keymap.set({ 'n', 't' }, '<A-k>', '<CMD>NavigatorUp<CR>')
+vim.keymap.set({ 'n', 't' }, '<A-j>', '<CMD>NavigatorDown<CR>')
+vim.keymap.set({ 'n', 't' }, '<A-p>', '<CMD>NavigatorPrevious<CR>')
 
--- Command line hiding
-vim.opt.cmdheight = 0
-vim.keymap.set("n", "<leader>sc", function()
-    vim.opt.cmdheight = 1 - vim.opt.cmdheight -- ._value
-end, { desc = "Toggle cmdheight" })
+-- Command line hiding 0.12
+-- doesn't work so trying noice
+-- vim.opt.cmdheight = 0
+-- vim.keymap.set('n', '<leader>tc', function()
+-- if vim.opt.cmdheight == 1 then
+--   vim.opt.cmdheight = 0
+-- else
+--   vim.opt.cmdheight = 1
+-- end
+-- print(vim.opt.cmdheight)
+-- vim.opt.cmdheight = 1 - vim.opt.cmdheight -- ._value
+-- end, { desc = '[T]oggle [C]mdheight' })
+
+vim.keymap.set('n', '<leader>nl', function()
+  require('noice').cmd 'last'
+end, { desc = '[N]oice [L]ast' })
+
+vim.keymap.set('n', '<leader>nh', function()
+  require('noice').cmd 'history'
+end, { desc = '[N]oice [H]istory' })
