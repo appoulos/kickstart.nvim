@@ -750,7 +750,7 @@ vim.keymap.set({ 'n', 't' }, '<A-h>', '<CMD>NavigatorLeft<CR>')
 vim.keymap.set({ 'n', 't' }, '<A-l>', '<CMD>NavigatorRight<CR>')
 vim.keymap.set({ 'n', 't' }, '<A-k>', '<CMD>NavigatorUp<CR>')
 vim.keymap.set({ 'n', 't' }, '<A-j>', '<CMD>NavigatorDown<CR>')
-vim.keymap.set({ 'n', 't' }, '<A-p>', '<CMD>NavigatorPrevious<CR>')
+-- vim.keymap.set({ 'n', 't' }, '<A-p>', '<CMD>NavigatorPrevious<CR>')
 
 -- Command line hiding 0.12
 -- doesn't work so trying noice
@@ -772,3 +772,9 @@ end, { desc = '[N]oice [L]ast' })
 vim.keymap.set('n', '<leader>nh', function()
   require('noice').cmd 'history'
 end, { desc = '[N]oice [H]istory' })
+
+-- require("oil").setup()
+
+vim.keymap.set("t", "<Esc>", "<C-\\><C-N>") -- Exit terminal mode
+vim.keymap.set("n", "<leader>cd", '<cmd>lua vim.fn.chdir(vim.fn.expand("%:p:h"))<CR>')
+vim.keymap.set("n", "<leader>r", "<Cmd>Neotree<CR>", { desc = 'Neot[r]ee' })

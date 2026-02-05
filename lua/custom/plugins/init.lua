@@ -288,7 +288,7 @@ return {
         textobjects = {
           move = {
             enable = true,
-            set_jumps = true, -- whether to set jumps in the jumplist
+            set_jumps = true,             -- whether to set jumps in the jumplist
             goto_next_start = {
               [']f'] = '@function.outer', -- apoulos was m
               [']]'] = { query = '@class.outer', desc = 'Next class start' },
@@ -350,7 +350,7 @@ return {
             -- mapping query_strings to modes.
             selection_modes = {
               ['@parameter.outer'] = 'v', -- charwise
-              ['@function.outer'] = 'V', -- linewise
+              ['@function.outer'] = 'V',  -- linewise
               ['@class.outer'] = '<c-v>', -- blockwise
             },
             -- If you set this to `true` (default is `false`) then any textobject is
@@ -393,14 +393,14 @@ return {
     lazy = false,
     config = function()
       require('tabout').setup {
-        tabkey = '<Tab>', -- key to trigger tabout, set to an empty string to disable
+        tabkey = '<Tab>',             -- key to trigger tabout, set to an empty string to disable
         backwards_tabkey = '<S-Tab>', -- key to trigger backwards tabout, set to an empty string to disable
-        act_as_tab = true, -- shift content if tab out is not possible
-        act_as_shift_tab = false, -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
-        default_tab = '<C-t>', -- shift default action (only at the beginning of a line, otherwise <TAB> is used)
-        default_shift_tab = '<C-d>', -- reverse shift default action,
-        enable_backwards = true, -- well ...
-        completion = false, -- if the tabkey is used in a completion pum
+        act_as_tab = true,            -- shift content if tab out is not possible
+        act_as_shift_tab = false,     -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
+        default_tab = '<C-t>',        -- shift default action (only at the beginning of a line, otherwise <TAB> is used)
+        default_shift_tab = '<C-d>',  -- reverse shift default action,
+        enable_backwards = true,      -- well ...
+        completion = false,           -- if the tabkey is used in a completion pum
         tabouts = {
           { open = "'", close = "'" },
           { open = '"', close = '"' },
@@ -418,7 +418,7 @@ return {
       'L3MON4D3/LuaSnip',
       'hrsh7th/nvim-cmp',
     },
-    opt = true, -- Set this to true if the plugin is optional
+    opt = true,              -- Set this to true if the plugin is optional
     event = 'InsertCharPre', -- Set the event to 'InsertCharPre' for better compatibility
     priority = 1000,
   },
@@ -455,18 +455,18 @@ return {
     dependencies = { 'nvim-treesitter' },
     config = function()
       require('treesitter-context').setup {
-        enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
-        multiwindow = false, -- Enable multiwindow support.
-        max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
-        min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
+        enable = true,            -- Enable this plugin (Can be enabled/disabled later via commands)
+        multiwindow = false,      -- Enable multiwindow support.
+        max_lines = 0,            -- How many lines the window should span. Values <= 0 mean no limit.
+        min_window_height = 0,    -- Minimum editor window height to enable context. Values <= 0 mean no limit.
         line_numbers = true,
         multiline_threshold = 20, -- Maximum number of lines to show for a single context
-        trim_scope = 'inner', -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
-        mode = 'cursor', -- Line used to calculate context. Choices: 'cursor', 'topline'
+        trim_scope = 'inner',     -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
+        mode = 'cursor',          -- Line used to calculate context. Choices: 'cursor', 'topline'
         -- Separator between context and content. Should be a single character string, like '-'.
         -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
         separator = nil,
-        zindex = 20, -- The Z-index of the context window
+        zindex = 20,     -- The Z-index of the context window
         on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
       }
     end,
@@ -514,13 +514,79 @@ return {
         },
         -- you can enable a preset for easier configuration
         presets = {
-          bottom_search = true, -- use a classic bottom cmdline for search
-          command_palette = true, -- position the cmdline and popupmenu together
+          bottom_search = true,         -- use a classic bottom cmdline for search
+          command_palette = true,       -- position the cmdline and popupmenu together
           long_message_to_split = true, -- long messages will be sent to a split
-          inc_rename = false, -- enables an input dialog for inc-rename.nvim
-          lsp_doc_border = false, -- add a border to hover docs and signature help
+          inc_rename = false,           -- enables an input dialog for inc-rename.nvim
+          lsp_doc_border = false,       -- add a border to hover docs and signature help
         },
       }
     end,
+  },
+
+  -- {
+  --   'yarospace/lua-console.nvim',
+  --   lazy = true,
+  --   keys = {
+  --     { '`',         desc = 'Lua-console - toggle' },
+  --     { '<Leader>`', desc = 'Lua-console - attach to buffer' },
+  --   },
+  --   -- opts = {},
+  --   opts = {
+  --     buffer = {
+  --       result_prefix = '=> ',
+  --       save_path = vim.fn.stdpath 'state' .. '/lua-console.lua',
+  --       autosave = true,              -- autosave on console hide / close
+  --       load_on_start = true,         -- load saved session on start
+  --       preserve_context = true,      -- preserve results between evaluations
+  --       strip_local = true,           -- strip `local` from top-level variable declarations
+  --       show_one_line_results = true, -- prints one line results, even if already shown as virtual text
+  --       notify_result = false,        -- notify result
+  --       clear_before_eval = true,     -- clear output below result prefix before evaluation of the whole buffer
+  --       process_timeout = 2 * 1e5,    -- number of instructions to process before timeout
+  --     },
+  --     window = {
+  --       border = 'double', -- single|double|rounded
+  --       height = 0.6,      -- percentage of main window
+  --     },
+  --     mappings = {
+  --       toggle = '`',             -- toggle console
+  --       attach = '<Leader>`',     -- attach console to a buffer
+  --       quit = 'q',               -- close console
+  --       eval = '<CR>',            -- evaluate code
+  --       eval_buffer = '<S-CR>',   -- evaluate whole buffer
+  --       kill_ps = '<Leader>K',    -- kill evaluation process
+  --       open = 'gf',              -- open link
+  --       messages = 'M',           -- load Neovim messages
+  --       save = 'S',               -- save session
+  --       load = 'L',               -- load session
+  --       resize_up = '<C-Up>',     -- resize up
+  --       resize_down = '<C-Down>', -- resize down
+  --       help = '?',               -- help
+  --     },
+  --   },
+  -- },
+
+  {
+    'stevearc/oil.nvim',
+    ---@module 'oil'
+    ---@type oil.SetupOpts
+    opts = {},
+    -- Optional dependencies
+    dependencies = { { 'nvim-mini/mini.icons', opts = {} } },
+    -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
+    -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+    lazy = false,
+  },
+
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      "nvim-tree/nvim-web-devicons", -- optional, but recommended
+    },
+    lazy = false, -- neo-tree will lazily load itself
   },
 }
