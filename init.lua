@@ -236,6 +236,17 @@ end
 local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 
+-- apoulos: 1. Create the function to detect recording
+local function check_macro_recording()
+  local reg = vim.fn.reg_recording()
+  if reg ~= '' then
+    -- Return styled text (e.g., in red)
+    return ' @' .. reg
+  else
+    return ''
+  end
+end
+
 -- [[ Configure and install plugins ]]
 --
 --  To check the current status of your plugins, run
@@ -300,7 +311,7 @@ require('lazy').setup({
   -- Then, because we use the `opts` key (recommended), the configuration runs
   -- after the plugin has been loaded as `require(MODULE).setup(opts)`.
 
-  { -- Useful plugin to show you pending keybinds.
+  {                     -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
     opts = {
@@ -381,7 +392,7 @@ require('lazy').setup({
       { 'nvim-telescope/telescope-ui-select.nvim' },
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
-      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+      { 'nvim-tree/nvim-web-devicons',            enabled = vim.g.have_nerd_font },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -489,7 +500,7 @@ require('lazy').setup({
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
       -- Useful status updates for LSP.
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim',    opts = {} },
 
       -- Allows extra capabilities provided by blink.cmp
       'saghen/blink.cmp',
@@ -956,7 +967,7 @@ require('lazy').setup({
         -- apoulos
         on_colors = function(colors)
           colors.comment = '#888888' -- "#565f89"
-          colors.bg = '#111111' -- "#24283b" -- '#111111'
+          colors.bg = '#111111'      -- "#24283b" -- '#111111'
           -- colors.hint = colors.orange
           -- colors.error = '#ff0000'
           -- colors.fg_gutter = '#999999' -- line numbers messes up status line
@@ -1003,7 +1014,9 @@ require('lazy').setup({
       -- cursor location to LINE:COLUMN
       ---@diagnostic disable-next-line: duplicate-set-field
       statusline.section_location = function()
-        return '%2l:%-2v' .. vim.fn.reg_recording() -- added msg for recording macro for noice
+        -- added msg for recording macro for noice
+        return '%2l:%-2v' .. check_macro_recording() -- adds @ infront of register name
+        -- return '%2l:%-2v' .. vim.fn.reg_recording()
       end
 
       -- ... and there is more!
