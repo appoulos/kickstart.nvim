@@ -114,9 +114,10 @@ vim.o.showmode = false
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-vim.schedule(function()
-  vim.o.clipboard = 'unnamedplus'
-end)
+-- vim.schedule(function()
+--   -- vim.o.clipboard = 'unnamedplus'
+--   vim.o.clipboard = 'wl-copy'
+-- end)
 
 -- Enable break indent
 vim.o.breakindent = true
@@ -1002,7 +1003,7 @@ require('lazy').setup({
       -- cursor location to LINE:COLUMN
       ---@diagnostic disable-next-line: duplicate-set-field
       statusline.section_location = function()
-        return '%2l:%-2v'
+        return '%2l:%-2v' .. vim.fn.reg_recording() -- added msg for recording macro for noice
       end
 
       -- ... and there is more!
