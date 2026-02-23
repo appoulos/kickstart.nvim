@@ -504,12 +504,36 @@ return {
     },
     config = function()
       require('noice').setup {
+        -- messages = {
+        --   enabled = false,
+        -- },
         lsp = {
+          progress = {
+            enabled = false,
+          },
+          -- signature = {
+          --   enabled = false,
+          -- },
+          -- message = {
+          --   enabled = false,
+          -- },
           -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
           override = {
             ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
             ['vim.lsp.util.stylize_markdown'] = true,
             ['cmp.entry.get_documentation'] = true, -- requires hrsh7th/nvim-cmp
+          },
+          signature = {
+            enabled = true,
+            auto_open = {
+              enabled = false,
+              trigger = true, -- Automatically show signature help when typing a trigger character from the LSP
+              luasnip = true, -- Will open signature help when jumping to Luasnip insert nodes
+              throttle = 50,  -- Debounce lsp signature help request by 50ms
+            },
+            view = nil,       -- when nil, use defaults from documentation
+            ---@type NoiceViewOptions
+            opts = {},        -- merged with defaults from documentation
           },
         },
         -- you can enable a preset for easier configuration
@@ -518,7 +542,7 @@ return {
           command_palette = true,       -- position the cmdline and popupmenu together
           long_message_to_split = true, -- long messages will be sent to a split
           inc_rename = false,           -- enables an input dialog for inc-rename.nvim
-          lsp_doc_border = false,       -- add a border to hover docs and signature help
+          lsp_doc_border = true,        -- add a border to hover docs and signature help
         },
       }
     end,
@@ -580,13 +604,34 @@ return {
   },
 
   {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v3.x",
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v3.x',
     dependencies = {
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-      "nvim-tree/nvim-web-devicons", -- optional, but recommended
+      'nvim-lua/plenary.nvim',
+      'MunifTanjim/nui.nvim',
+      'nvim-tree/nvim-web-devicons', -- optional, but recommended
     },
-    lazy = false, -- neo-tree will lazily load itself
+    lazy = false,                    -- neo-tree will lazily load itself
   },
+  -- { -- apoulos: Adds workspace annoying messages back!!
+  --   'andrewferrier/debugprint.nvim',
+  --
+  --   config = function()
+  --     require('noice').setup {}
+  --   end,
+  --   -- opts = { … },
+  --
+  --   dependencies = {
+  --     'nvim-mini/mini.nvim',           -- Optional: Needed for line highlighting (full mini.nvim plugin)
+  --     -- ... or ...
+  --     'nvim-mini/mini.hipatterns',     -- Optional: Needed for line highlighting ('fine-grained' hipatterns plugin)
+  --
+  --     'ibhagwan/fzf-lua',              -- Optional: If you want to use the `:Debugprint search` command with fzf-lua
+  --     'nvim-telescope/telescope.nvim', -- Optional: If you want to use the `:Debugprint search` command with telescope.nvim
+  --     'folke/snacks.nvim',             -- Optional: If you want to use the `:Debugprint search` command with snacks.nvim
+  --   },
+  --
+  --   lazy = false,  -- Required to make line highlighting work before debugprint is first used
+  --   version = '*', -- Remove if you DON'T want to use the stable version
+  -- },
 }

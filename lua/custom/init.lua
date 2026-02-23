@@ -765,6 +765,10 @@ vim.keymap.set({ 'n', 't' }, '<A-j>', '<CMD>NavigatorDown<CR>')
 -- vim.opt.cmdheight = 1 - vim.opt.cmdheight -- ._value
 -- end, { desc = '[T]oggle [C]mdheight' })
 
+vim.keymap.set('n', '<leader>nd', function()
+  require('noice').cmd 'dismiss'
+end, { desc = '[N]oice [D]ismiss' })
+
 vim.keymap.set('n', '<leader>nl', function()
   require('noice').cmd 'last'
 end, { desc = '[N]oice [L]ast' })
@@ -775,6 +779,36 @@ end, { desc = '[N]oice [H]istory' })
 
 -- require("oil").setup()
 
-vim.keymap.set("t", "<Esc>", "<C-\\><C-N>") -- Exit terminal mode
-vim.keymap.set("n", "<leader>cd", '<cmd>lua vim.fn.chdir(vim.fn.expand("%:p:h"))<CR>')
-vim.keymap.set("n", "<leader>r", "<Cmd>Neotree<CR>", { desc = 'Neot[r]ee' })
+vim.keymap.set('t', '<Esc>', '<C-\\><C-N>') -- Exit terminal mode
+vim.keymap.set('n', '<leader>cd', '<cmd>lua vim.fn.chdir(vim.fn.expand("%:p:h"))<CR>')
+vim.keymap.set('n', '<leader>r', '<Cmd>Neotree<CR>', { desc = 'Neot[r]ee' })
+
+-- require('debugprint').setup()
+
+-- vim.api.nvim_create_autocmd("LspAttach", {
+--     callback = function(args)
+--         local client = vim.lsp.get_client_by_id(args.data.client_id)
+--         if client.name == "lua_ls" then -- and vim.endswith(args.file, ".env") then
+--             vim.diagnostic.disable(args.buf)
+--             -- Optional: Clear any existing diagnostics immediately
+--             vim.diagnostic.hide(nil, args.buf)
+--         end
+--     end
+-- })
+
+-- Toggle diagnostics globally
+-- vim.keymap.set("n", "<leader>td", function()
+--   if vim.diagnostic.is_enabled() then
+--     vim.diagnostic.disable()
+--   else
+--     vim.diagnostic.enable()
+--   end
+-- end, { desc = "Toggle diagnostics" })
+
+-- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+--   vim.lsp.diagnostic.on_publish_diagnostics, {
+--      signs = { severity_limit = "Warning", },
+--      virtual_text = { severity_limit = "Error", },
+--      underline = { severity_limit = "Error", },
+-- })
+

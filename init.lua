@@ -114,10 +114,10 @@ vim.o.showmode = false
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
--- vim.schedule(function()
---   -- vim.o.clipboard = 'unnamedplus'
---   vim.o.clipboard = 'wl-copy'
--- end)
+vim.schedule(function()
+  vim.o.clipboard = 'unnamedplus'
+  -- vim.o.clipboard = 'wl-copy'
+end)
 
 -- Enable break indent
 vim.o.breakindent = true
@@ -500,7 +500,8 @@ require('lazy').setup({
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
       -- Useful status updates for LSP.
-      { 'j-hui/fidget.nvim',    opts = {} },
+      -- apoulos bottom right messages are distracting!!!
+      -- { 'j-hui/fidget.nvim',    opts = {} },
 
       -- Allows extra capabilities provided by blink.cmp
       'saghen/blink.cmp',
@@ -1029,7 +1030,7 @@ require('lazy').setup({
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'regex' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
