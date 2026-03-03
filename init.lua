@@ -785,6 +785,8 @@ require('lazy').setup({
         'vim-language-server',
         'yaml-language-server',
         'zls',
+        'ruff',
+        'basedpyright',
         -- 'asm-lsp', -- long rust compilation
         -- 'checkmake', -- not in aarch64
         -- 'clangd', -- not in aarch64
