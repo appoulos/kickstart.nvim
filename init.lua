@@ -728,6 +728,7 @@ require('lazy').setup({
         'json-lsp',
         'vim-language-server',
         'yaml-language-server',
+        'tclsp',
         'zls',
         'ruff',
         'basedpyright',
